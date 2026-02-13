@@ -1,0 +1,89 @@
+{% extends 'layout.html' %}
+{% block content %}
+<div class="container py-5">
+    <div class="row g-5"> <div class="col-lg-8">
+            <div class="mb-5">
+                <h1 class="fw-bold border-bottom border-3 border-dark pb-2 d-inline-block text-uppercase">LMS SYSTEM</h1>
+                <p class="text-secondary">환영합니다, <strong>{{ session['user_name'] }}</strong>님. 원하시는 서비스를 선택하세요.</p>
+            </div>
+
+            <div class="row g-4">
+                <div class="col-12">
+                    <div class="p-4 rounded-0 border-start border-dark border-4 shadow-sm bg-white h-100 d-flex flex-column justify-content-between">
+                        <div>
+                            <div class="d-flex justify-content-between align-items-center mb-2">
+                                <h4 class="fw-bold m-0">자유 게시판</h4>
+                                <span class="badge bg-dark text-white rounded-0">Community</span>
+                            </div>
+                            <p class="text-muted mb-4">수강생들과 소통하며 의견을 공유하고 질문을 남길 수 있는 공간입니다.</p>
+                        </div>
+                        <a href="/board/free" class="btn btn-sm btn-dark px-4 rounded-0 align-self-start">ENTER</a>
+                    </div>
+                </div>
+
+                <div class="col-12">
+                    <div class="p-4 rounded-0 border-start border-secondary border-4 shadow-sm bg-white h-100 d-flex flex-column justify-content-between">
+                        <div>
+                            <div class="d-flex justify-content-between align-items-center mb-2">
+                                <h4 class="fw-bold m-0">자료실</h4>
+                                <span class="badge bg-secondary text-white rounded-0">Files</span>
+                            </div>
+                            <p class="text-muted mb-4">강의에 필요한 교안 및 과제 양식을 확인하고 안전하게 다운로드하세요.</p>
+                        </div>
+                        <a href="/filesboard" class="btn btn-sm btn-outline-dark px-4 rounded-0 align-self-start">VIEW FILES</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-lg-4">
+            <div class="card border-dark rounded-0 shadow-sm sticky-top" style="top: 2rem; z-index: 10;">
+                <div class="text-center py-5 bg-light border-bottom">
+                    <div class="position-relative d-inline-block">
+                        {% if session['profile_img'] %}
+                            <img src="{{ session['profile_img'] }}"
+                                 class="rounded-circle border border-2 border-dark p-1"
+                                 alt="Profile"
+                                 style="width: 140px; height: 140px; object-fit: cover; filter: grayscale(100%);">
+                        {% else %}
+                            <div class="rounded-circle border border-2 border-dark d-flex align-items-center justify-content-center mx-auto bg-dark shadow-sm"
+                                 style="width: 140px; height: 140px;">
+                                <i class="bi bi-person-fill text-white" style="font-size: 4rem;"></i>
+                            </div>
+                        {% endif %}
+                    </div>
+                </div>
+
+            <div class="card-body px-4">
+            <h5 class="fw-bold text-center mb-4 text-uppercase letter-spacing-1">User Profile</h5>
+
+            <div class="mb-3 pb-2 border-bottom border-light">
+                <label class="small text-uppercase fw-bold text-muted d-block" style="font-size: 0.7rem;">User ID (UID)</label>
+                <span class="text-dark fw-semibold">{{ session['user_uid'] }}</span>
+            </div>
+
+            <div class="mb-3 pb-2 border-bottom border-light">
+                <label class="small text-uppercase fw-bold text-muted d-block" style="font-size: 0.7rem;">Name</label>
+                <span class="text-dark fw-semibold">{{ session['user_name'] }}</span>
+            </div>
+
+            <div class="mb-4 p-3 bg-light border-start border-dark border-2">
+                <label class="small text-uppercase fw-bold text-muted d-block mb-1" style="font-size: 0.7rem;">About Me</label>
+                <p class="small mb-0 text-dark italic">
+                    {% if session['user_bio'] and session['user_bio'] != "" %}
+                        {{ session['user_bio'] }}
+                    {% else %}
+                        <span class="text-muted">자기소개를 입력해주세요.</span>
+                    {% endif %}
+                </p>
+            </div>
+        </div>
+
+                <div class="card-footer bg-white border-top-0 pb-4 px-4">
+                    <a href="/logout" class="btn btn-dark w-100 rounded-0 py-2">LOGOUT</a>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

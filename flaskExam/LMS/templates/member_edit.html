@@ -1,0 +1,34 @@
+{% extends 'layout.html' %}
+{% block content %}
+<div class="row justify-content-center mt-5">
+    <div class="col-md-5">
+        <div class="card shadow border-dark rounded-0 bg-dark text-white"> <div class="card-header bg-black text-white text-center py-3 border-bottom border-secondary">
+                <h4 class="mb-0 fw-bold">회원 정보 수정</h4>
+            </div>
+            <div class="card-body p-4">
+                <form action="/member/edit" method="POST">
+                    <div class="mb-3">
+                        <label class="form-label fw-bold">이름</label>
+                        <input type="text" name="name" class="form-control rounded-0 border-secondary bg-dark text-white shadow-sm" value="{{ user['name'] }}" required>
+                    </div>
+
+                    <div class="mb-3">
+                        <label class="form-label fw-bold">자기소개</label>
+                        <textarea name="bio" class="form-control rounded-0 border-secondary bg-dark text-white shadow-sm" rows="4" placeholder="자신을 한 줄로 표현해 보세요.">{{ user['bio'] if user['bio'] else '' }}</textarea>
+                        <div class="form-text text-secondary small">작성하신 내용은 프로필 카드에 노출됩니다.</div>
+                    </div>
+
+                    <div class="mb-4">
+                        <label class="form-label fw-bold">새 비밀번호 (변경 시에만 입력)</label>
+                        <input type="password" name="password" class="form-control rounded-0 border-secondary bg-dark text-white shadow-sm" placeholder="새 비밀번호를 입력하세요">
+                    </div>
+
+                    <div class="d-grid gap-2">
+                        <button type="submit" class="btn btn-light rounded-0 py-2 fw-bold">저장하기</button>
+                        <a href="/mypage" class="btn btn-outline-secondary rounded-0 py-2 text-white">취소</a>
+                    </div>
+                </form> </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

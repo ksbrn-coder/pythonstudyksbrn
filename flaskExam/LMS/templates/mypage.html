@@ -1,0 +1,64 @@
+{% extends 'layout.html' %}
+
+{% block content %}
+<div class="row justify-content-center mt-5">
+    <div class="col-md-8">
+        <div class="card shadow border-0 rounded-5 bg-dark text-white">
+            <div class="card-header bg-black text-white py-3 border-bottom border-secondary">
+                <h4 class="mb-0"><i class="bi bi-person-circle"></i><strong>마이페이지</strong></h4>
+            </div>
+
+            <div class="card-body p-4 bg-white">
+                <div class="row align-items-center">
+                    <div class="col-md-4 text-center border-end border-secondary">
+                        <div class="display-1 text-secondary mb-3">
+                            <i class="bi bi-person-bounding-box"></i>
+                        </div>
+                        <h4 class="fw-bold text-black">{{ user.name }}</h4>
+                        <span class="badge bg-secondary rounded-0">{{ user.role.upper() }}</span>
+                    </div>
+
+                    <div class="col-md-8 ps-md-5">
+                        <h5 class="text-black border-bottom border-secondary pb-2">기본 정보</h5>
+                        <div class="mb-3 mt-3 small text-black-50">
+                            <strong>아이디:</strong> <span class="ms-2 text-black">{{ user.uid }}</span>
+                        </div>
+                        <div class="mb-3 small text-black-50">
+                            <strong>가입일:</strong> <span class="ms-2 text-black">{{ user.created_at.strftime('%Y-%m-%d') if user.created_at else "날짜없음" }}</span>
+                        </div>
+
+                        <h5 class="text-black border-bottom border-secondary pb-2 mt-4">자기소개</h5>
+                        <div class="p-3 bg-dark border-start border-light border-3 rounded-3 my-3">
+                            <p class="mb-0 small italic">
+                                {% if user.bio %}
+                                    {{ user.bio }}
+                                {% else %}
+                                    <span class="text-secondary opacity-50">등록된 자기소개가 없습니다. 정보 수정에서 추가해 보세요!</span>
+                                {% endif %}
+                            </p>
+                        </div>
+
+                        <h5 class="text-black border-bottom border-secondary pb-2 mt-4 fw-bold">활동 요약</h5>
+                        <div class="row mt-3 g-3">
+                            <div class="col-6">
+                                <div class="card bg-dark border border-secondary rounded-3 h-100">
+                                    <div class="card-body text-center d-flex flex-column justify-content-center py-4">
+                                        <small class="text-white-50 d-block mb-2 text-uppercase letter-spacing-1">작성 게시글</small>
+                                        <a href="/board/my" class="h3 fw-bold text-white text-decoration-none">{{ board_count }}건</a>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="col-6">
+                                <div class="card bg-dark border border-secondary rounded-3 h-100">
+                                    <div class="card-body text-center d-flex flex-column justify-content-center py-4">
+                                        <small class="text-white-50 d-block mb-2 text-uppercase letter-spacing-1">성적 등록 여부</small>
+                                        <a href="/score/my" class="h5 fw-bold text-dark bg-white rounded-3 text-decoration-none border border-light py-1 px-2 mx-auto">조회하기</a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div> </div> </div> </div> <div class="card-footer bg-black border-top border-secondary text-end p-4">
+                <a href="/member/edit" class="btn btn-light btn-sm rounded-3 fw-bold px-3">정보 수정</a>
+                <button class="btn btn-outline-secondary btn-sm rounded-3 px-3" onclick="location.href='/'">홈으로</button>
+            </div>
+        </div> </div> </div> {% endblock %}
